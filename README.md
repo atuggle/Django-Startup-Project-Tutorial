@@ -114,7 +114,7 @@
 		* Attendance
 			* Person
 			* Event
-	* See (Model.py code to copy/paste): [https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-3-projectapp-models/projectname/events/models.py](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-3-projectapp-models/projectname/events/models.py)
+	* See (Model.py code to copy/paste): [Click Me](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-3-projectapp-models/projectname/events/models.py)
 
 ---
 
@@ -132,7 +132,7 @@
 10. #### Slide (Free Admin CRUD pages for models): 
 	* Register models in admin.py:
 		* Edit **events/admin.py**:
-			* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-6-projectapp-admin/projectname/events/admin.py
+			* [See code here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-6-projectapp-admin/projectname/events/admin.py)
 		* Refresh admin 
 		* Discuss Admin consoles
 	* SEE branch: release-6-projectapp-templates
@@ -152,16 +152,29 @@
 
 12. #### Slide (urls.py & Routes):
 	* Create events/urls.py:
-		> from django.conf.urls import url
+		```
+		from django.conf.urls import url
 		from . import views
+		
 		app_name = 'events'
+		
 		urlpatterns = [
 			url(r'^\$', views.index, name='index'),
 			# url(r'^(?P<event_id>[0-9]+)/$', views.detail, name='detail'),
 		]
+		```
+		* [See code here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/urls.py)
 	* Connect EventManager/urls.py to EventManager/events/url.py
-		>from django.conf.urls import include, url
-		url(r'^events/', include('events.urls')),
+		```
+		from django.conf.urls import include, url
+		from django.contrib import admin
+
+		urlpatterns = [
+			url(r'^admin/', admin.site.urls),
+			url(r'^events/', include('events.urls')),
+		]
+		```
+		* [See code here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/projectname/urls.py)
 	
 ---
 	
@@ -169,9 +182,11 @@
 	* Create basic "Hello World" in views.py 
 		* Ensure "HttpResponse" has been imported in the top "from ..." line
 		* Add below code
+		```
 		def index(request):
 			return HttpResponse('Hello World')
-	* SEE branch: release-2-projectapp-view
+		```
+	* SEE branch: [release-2-projectapp-view](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-2-projectapp-view/projectname/events/views.py)
 
 ---
 
@@ -179,28 +194,30 @@
 	* Create Templates and connect to view:
 		* Discuss why duplication of app name in template folder
 		* events/templates/events/index.html
-			* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/templates/events/index.html
+			* [Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/templates/events/index.html)
 		* events/templates/base.html
-			* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/templates/base.html
+			* [Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/templates/base.html)
 		* Template inheritance via {% block name %} [% endblock %}
 		* Events/static/events/starter-template.css
-			* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/static/events/starter-template.css
+			* [Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/static/events/starter-template.css)
 
 ---
 
 15. #### Slide (Connect our view.py (controller) to our html templates):
 	* Connect view.py to templates:
 		* Add linked code to view.py Just the function **def index**
-			* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/views.py
+			* [Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-4-projectapp-templates/projectname/events/views.py)
 	* SEE branch: release-4-projectapp-templates
 
 ---
 
 16. #### Slide (python shell for data evaluation): 
 	* Discuss shell
-		* > %> python manage.py shell
-		 from events.models import Event, Person, Attendance
-		 Event.objects.all() 
+		```
+		%>python manage.py shell
+		 
+		from events.models import Event, Person, Attendance
+		Event.objects.all() 
 		e = Event(name='event one', description='this is the description')
 		e.save() 
 		e.date_time
@@ -208,6 +225,7 @@
 		e.save()
 		Event.objects.filter(name__endswith='two')  
 		quit()      <- to quit
+		```
 
 ---
 
@@ -215,17 +233,17 @@
 	* Discuss Forms:
 	* Create **RegisterForm(forms.Form)** 
 		* Create events/forms.py file
-			* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-5-projectapp-forms/projectname/events/forms.py
+			* [Sample Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-5-projectapp-forms/projectname/events/forms.py)
 
 ---
 
 17. #### Slide (Web Forms continued):
 	* Create form and detail.html:
 	* Events/templates/events/details.html
-		* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-5-projectapp-forms/projectname/events/templates/events/detail.html
+		* [Sample Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-5-projectapp-forms/projectname/events/templates/events/detail.html)
 	* Uncomment line un urls.py so details route will work
 	* Update views.py to look like this:
-		* https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-5-projectapp-forms/projectname/events/views.py
+		* [Sample Code Here](https://github.com/atuggle/Django-Startup-Project-Tutorial/blob/release-5-projectapp-forms/projectname/events/views.py)
 	* Use the form to create one or more attendance records in db
 	* SEE branch: release-5-projectapp-forms
 	
