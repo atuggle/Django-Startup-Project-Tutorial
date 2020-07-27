@@ -21,8 +21,8 @@ class Person(models.Model):
         return self.full_name
       
 class Attendance(models.Model):
-    person = models.ForeignKey(Person)
-    event = models.ForeignKey(Event)
+    person = models.ForeignKey(Person, on_delete=models.PROTECT)
+    event = models.ForeignKey(Event, on_delete=models.PROTECT)
     
     def __str__(self):
-        return "{0} is Attending the Event: {1}".format(self.person.full_name, self.event.name)
+        return f"{self.person.full_name} is Attending the Event: {self.event.name}"
